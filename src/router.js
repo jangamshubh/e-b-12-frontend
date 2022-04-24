@@ -144,6 +144,16 @@ const routes = [
         name: 'attendances.duplicate-attendance',
         component: () => import('./pages/attendances/Duplicate.vue'),
     },
+    {
+        path: '/attendances/:attendance_id/view-feedback',
+        name: 'feedback.view',
+        component: () => import('./pages/feedbacks/ViewFeedback.vue'),
+    },
+    {
+        path: '/attendances/:attendance_id/add-feedback',
+        name: 'feedback.add',
+        component: () => import('./pages/feedbacks/AddFeedback.vue'),
+    },
 ];
 
 const router = createRouter({

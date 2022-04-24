@@ -55,6 +55,7 @@
                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2" @click="editAttendance(data.data)" />
                             <Button icon="pi pi-clone" class="p-button-rounded p-button-info mr-2" @click="duplicateAttendance(data.data)" />
                             <Button icon="pi pi-eye" class="p-button-rounded p-button-info mr-2" @click="showAttendance(data.data)" />
+                            <Button icon="pi pi-eye" label="View Feedback" class="p-button-rounded p-button-info mr-2" @click="showFeedback(data.data)" />
                         </template>
                     </Column>
                 </DataTable>
@@ -223,6 +224,9 @@ export default {
         },
         showAttendance(data) {
             this.$router.push({ name: 'attendances.show', params: { attendance_id: data.id }});
+        },
+        showFeedback(data) {
+            this.$router.push({ name: 'feedback.view', params: { attendance_id: data.id }});
         },
         duplicateAttendance(data) {
             this.$router.push({ name: 'attendances.duplicate-attendance', params: { attendance_id: data.id }});

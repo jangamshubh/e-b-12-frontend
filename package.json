@@ -30,6 +30,7 @@
 		"primevue": "3.9.1",
 		"prismjs": "1.9.0",
 		"vue": "3.2.9",
+		"vue-feedback-reaction": "^1.2.0",
 		"vue-router": "^4.0.0-0",
 		"vue3-date-time-picker": "^2.8.0",
 		"vuex": "^4.0.2"

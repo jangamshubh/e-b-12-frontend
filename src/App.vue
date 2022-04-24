@@ -66,8 +66,6 @@ export default {
 				{
 					label: 'Menu', icon: 'pi pi-fw pi-sitemap',
 					items: [
-						{ label: 'Assignments', icon: 'pi pi-fw pi-id-card', to: '/assignments' },
-						{ label: 'Practicals', icon: 'pi pi-fw pi-id-card', to: '/practicals' },
 						{ label: 'Attendance', icon: 'pi pi-fw pi-id-card', to: '/attendances' },
 					]
 				},
@@ -90,8 +88,6 @@ export default {
 				{
 					label: 'Administration', icon: 'pi pi-fw pi-sitemap',
 					items: [
-						{ label: 'Assignments', icon: 'pi pi-fw pi-id-card', to: '/assignments' },
-						{ label: 'Practicals', icon: 'pi pi-fw pi-id-card', to: '/practicals' },
 						{ label: 'Attendance', icon: 'pi pi-fw pi-id-card', to: '/attendances' },
 					]
 				},
