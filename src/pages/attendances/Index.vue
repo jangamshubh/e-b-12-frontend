@@ -96,6 +96,11 @@
                             <b v-else>Late</b>
                         </template>
                     </Column>
+                    <Column field="feedback" header="Feedback" style="min-width:12rem">
+                        <template #body="{data}">
+                            <Button v-if="data.status == 1" icon="pi pi-user-plus" class="p-button-rounded p-button-info mr-2" label="Add Feedback" @click="addFeedback(data)" />
+                        </template>
+                    </Column>
                 </DataTable>
             </div>
         </div>
@@ -236,6 +241,10 @@ export default {
         },
         redirectToCreatePage() {
             this.$router.push({ name: 'attendances.create' });
+        },
+        addFeedback(data) {
+            this.$router.push({ name: 'feedback.add', params: { attendance_id: data.attendance_id }});
+            // console.log(data)
         },
     },
 

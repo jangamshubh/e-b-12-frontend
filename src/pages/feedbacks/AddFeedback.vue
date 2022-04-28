@@ -7,6 +7,12 @@
                     <h5>Add Feedback for lecture</h5>
                     <Button type="button" icon="pi pi-arrow-left" label="Back To Index Page" class="p-button-outlined mb-2" @click="redirectToIndexPage()" />
                 </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img class="image-fit" v-bind:src="user.profile_pic" />
+                    </div>
+                    <b>{{ user.name }}</b>
+                </div>
                 <div class="grid formgrid" v-for="(question, index) in questions" :key="question.id">
                     <InputText id="name1" type="hidden" v-model="data.student_feedback[index].student_id" :value='question.id' :disabled="true"/>
                     <div class="mr-2 lg:col-12">
@@ -34,6 +40,7 @@ export default {
             data: {
                 student_feedback: [],
             },
+            user: {},
             reaction: 'natural',
             isActive: false,
             isDisabled: false,
@@ -64,6 +71,8 @@ export default {
         this.checkUserLogin();
         this.checkUserRole();
         this.getQuestions();
+        this.checkFeedbackPermission();
+        this.getTeacherProfilePic();
     },
     methods: {
         checkUserLogin() {
@@ -108,6 +117,15 @@ export default {
                     this.toastMessage(response.message,response.status);
                     this.redirectToIndexPage();
                 }
+            })
+        },
+        getTeacherProfilePic() {
+            axios.get(`${process.env.VUE_APP_API_URL}/feedback/${this.$route.params.attendance_id}/get-teacher-profile-pic`, { headers: authHeader() }).then(data => {
+                let response = data.data;
+                // if(response.status == 'success') {
+                    this.user = response.data;
+                    console.log(this.user.profile_pic);
+                // }
             })
         },
         saveFeedback() {
