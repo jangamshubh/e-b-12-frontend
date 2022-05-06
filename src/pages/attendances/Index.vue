@@ -103,6 +103,43 @@
                     </Column>
                 </DataTable>
             </div>
+            <div class="card" v-if="this.role == 'Super Admin'">
+                <Toast />
+                <div class="card-header flex justify-content-between flex-column sm:flex-row">
+                    <h5>Attendance</h5>
+                </div>
+                <DataTable :value="attendances" :paginator="true" class="p-datatable-gridlines" :rows="10" dataKey="id" :rowHover="true"
+                v-model:filters="filters1" filterDisplay="menu" :loading="loading1" :filters="filters1" responsiveLayout="scroll"
+                :globalFilterFields="['status']" >
+
+                    <template #header>
+                    </template>
+                    <template #empty>
+                        No data found.
+                    </template>
+                    <template #loading>
+                        Loading data. Please wait.
+                    </template>
+                    <Column field="subject" header="Subject" style="min-width:12rem">
+                        <template #body="{data}">
+                            {{ data.attendance_get_subjects.name }}
+                        </template>
+                        <template #filter="{filterModel}">
+                            <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by name"/>
+                        </template>
+                    </Column>
+                    <Column field="date" header="Date" style="min-width:12rem">
+                        <template #body="{data}">
+                            {{ data.date }}
+                        </template>
+                    </Column>
+                    <Column>
+                        <template #body="data">
+                            <Button icon="pi pi-eye" label="View Feedback" class="p-button-rounded p-button-info mr-2" @click="showFeedback(data.data)" />
+                        </template>
+                    </Column>
+                </DataTable>
+            </div>
         </div>
     </div>
 </template>
@@ -152,6 +189,7 @@ export default {
         // this.getAttendances();
         this.getAllStudentBatchSubjects();
         this.getAllTeacherSubjects();
+        this.getAllSuperAdminAttendance();
     },
     methods: {
         checkUserLogin() {
@@ -175,6 +213,13 @@ export default {
             if(this.role == 'Teacher' && this.teacher.subject_id != '') {
                 axios.get(`${process.env.VUE_APP_API_URL}/batch-teacher-subjects/${this.teacher.subject_id}/getTeacherClassrooms`, { headers: authHeader() }).then(data => {
                     this.classrooms = data.data.data;
+                })
+            }
+        },
+        getAllSuperAdminAttendance() {
+            if(this.role == 'Super Admin') {
+                axios.get(`${process.env.VUE_APP_API_URL}/attendances/getAllSuperAdminAttendance`, { headers: authHeader() }).then(data => {
+                    this.attendances = data.data.data;
                 })
             }
         },

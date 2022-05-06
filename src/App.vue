@@ -52,7 +52,7 @@ export default {
 						{label: 'Roles', icon: 'pi pi-fw pi-id-card', to: '/roles'},
 						{label: 'Users', icon: 'pi pi-fw pi-check-square', to: '/users'},
 						{label: 'Subjects', icon: 'pi pi-fw pi-id-card', to:'/subjects'},
-						{label: 'Colleges', icon: 'pi pi-fw pi-id-card', to:'/colleges'},
+						{ label: 'Attendance', icon: 'pi pi-fw pi-id-card', to: '/attendances' },
 					]
 				},
             ],
